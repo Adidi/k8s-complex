@@ -12,8 +12,8 @@ before_install:
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
   - gcloud config set project multi-k8s-307307
-  - gcloud config set compute/zone europe-west1-c
-  - gcloud container clusters get-credentials multi-cluster
+  - gcloud config set compute/zone us-central1-c
+  - gcloud container clusters get-credentials cluster-1
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t adidi/react-test -f ./client/Dockerfile.dev ./client
 
