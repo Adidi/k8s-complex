@@ -37,6 +37,7 @@ const redisPublisher = redisClient.duplicate();
 // Express route handlers
 
 app.get('/', (req, res) => {
+  console.log('**************************** ***************************************************', keys.redisHost);
   res.json({
     redisHost: keys.redisHost,
     pgHost: keys.pgHost
