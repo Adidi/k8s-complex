@@ -52,8 +52,15 @@ app.get('/private', async (req, res) => {
 });
 
 app.get('/private/noport', async (req, res) => {
-  const axiosResponse = await axios.get('http://prs-cluster-ip-service/adiel');
-  res.send(axiosResponse.data);
+  try {
+    const axiosResponse = await axios.get('http://prs-cluster-ip-service/adiel');
+    res.send(axiosResponse.data);
+  }
+  catch(ex) {
+    res.json({
+      error: ex.message
+    })
+  }
 });
 
 
