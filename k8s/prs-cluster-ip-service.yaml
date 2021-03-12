@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prs-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: prs
+  ports:
+    - port: 9999
+      targetPort: 9999

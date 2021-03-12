@@ -4,6 +4,7 @@ const keys = require('./keys');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const axios = require('axios');
 
 const app = express();
 app.use(cors());
@@ -43,6 +44,19 @@ app.get('/', (req, res) => {
     pgHost: keys.pgHost
   });
 });
+
+
+app.get('/private', async (req, res) => {
+    const axiosResponse = await axios.get('http://prs-cluster-ip-service:9999/adiel');
+    res.send(axiosResponse.data);
+});
+
+app.get('/private/noport', async (req, res) => {
+  const axiosResponse = await axios.get('http://prs-cluster-ip-service/adiel');
+  res.send(axiosResponse.data);
+});
+
+
 
 app.get('/values/all', async (req, res) => {
   const values = await pgClient.query('SELECT * from values');
